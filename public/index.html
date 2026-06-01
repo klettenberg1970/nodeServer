@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+  <button onclick="laden()">Daten laden</button>
+  <p id="ausgabe"></p>
+
+  <script>
+    async function laden() {
+      const res = await fetch('/api/v1/start');
+      const data = await res.json();
+      document.getElementById('ausgabe').textContent = data.start;
+    }
+  </script>
+</body>
+</html>
