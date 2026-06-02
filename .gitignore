@@ -42,4 +42,4 @@ coverage/
 # ==================== PROJECT SPECIFIC ====================
 **/skripts/
 docs/
-**/credentials.json      # besser, greift überall
+**/credentials.json     
