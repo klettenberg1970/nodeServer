@@ -42,4 +42,4 @@ coverage/
 # ==================== PROJECT SPECIFIC ====================
 **/skripts/
 docs/
-/credentials.json   # 👈 führender Slash für root-only
+**/credentials.json      # besser, greift überall

@@ -1,4 +1,4 @@
-import RSS from '../../models/rssmodel.js';
+import RSS from '../../models/rssModel.js';
 import Parser from 'rss-parser';
 
 const parser = new Parser();
@@ -35,14 +35,15 @@ export async function getfeeds(req, res) {
   res.json({ feed });
 }
 
-export async function postfeeds(req, res) {
-    const name = req.body.name;
-    const url = req.body.url;
-
-    const feed = await RSS.create({ name, url });
-    console.log(`Name: ${name} wurde erstellt`);
-    console.log(`URL: ${url} wurde erstellt`);
-    res.status(201).json({ success: true });
+export async function createFeeds(req, res) {
+    try {
+        const { kategorie, name, url } = req.body;
+        await RSS.create({ kategorie, name, url });
+        console.log(`Name: ${name} wurde erstellt`);
+        res.status(201).json({ success: true });
+    } catch (err) {
+        res.status(500).json({ error: 'Serverfehler' });
+    }
 }
 
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getnamen,getfeeds ,postfeeds, deleterss, getAllFeeds} from '../controllers/RSS/rssController.js';
+import { getnamen,getfeeds ,createFeeds, deleterss, getAllFeeds} from '../controllers/RSS/rssController.js';
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/all',  getAllFeeds);
 
 
 router.post('/ausgeben', getfeeds);
-router.post('/add', postfeeds);
+router.post('/add', createFeeds);
 
 router.delete('/delete',deleterss)
 
