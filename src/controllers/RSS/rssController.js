@@ -1,54 +1,43 @@
 import RSS from '../../models/rssModel.js';
 import Parser from 'rss-parser';
+import asyncHandler from '../../middleware/asyncHandler.js';
 
 const parser = new Parser();
 
+export const getnamen = asyncHandler(async (req, res) => {
+    const feeds = await RSS.find();
+    res.json(feeds);
+});
 
-export async function getnamen(req, res) {
+export const getAllFeeds = asyncHandler(async (req, res) => {
+    const feeds = await RSS.find();
+   
+    res.json({ feeds });
+});
 
-  const feeds = await RSS.find();
-  const sortierteNamen = feeds
-    .map(element => element.name)
-    .sort((a, b) => a.localeCompare(b, 'de', { sensitivity: 'base' }));
+export const getfeeds = asyncHandler(async (req, res) => {
+    const name = req.body.name;
+      
+    const feeds = await RSS.find();
+    const feedObj = feeds.find(feed => feed.name === name);
 
-  res.json(sortierteNamen || []);
-}
+    if (!feedObj || !feedObj.url) {
+        return res.json({ feed: null });
+    }
 
-export async function getAllFeeds(req, res) {
-  const feeds = await RSS.find();
-  console.log(feeds)
-  res.json({ feeds: feeds })
-}
+    const feed = await parser.parseURL(feedObj.url);
+    res.json({ feed });
+});
 
-export async function getfeeds(req, res) {
-  const name = req.body.name;
-  const feeds = await RSS.find();
-  const feedObj = feeds.find(feed => feed.name === name);
-
-  // WICHTIG: Prüfen ob feedObj UND feedObj.url existieren
-  if (!feedObj || !feedObj.url) {
-    return res.json({ feed: null }); // Statt Absturz
-  }
-
-  const feed = await parser.parseURL(feedObj.url);
-
-  res.json({ feed });
-}
-
-export async function createFeeds(req, res) {
-  try {
+export const createFeeds = asyncHandler(async (req, res) => {
     const { kategorie, name, url } = req.body;
     await RSS.create({ kategorie, name, url });
     console.log(`Name: ${name} wurde erstellt`);
     res.status(201).json({ success: true });
-  } catch (err) {
-    res.status(500).json({ error: 'Serverfehler' });
-  }
-}
+});
 
-
-export async function deleterss(req, res) {
-  const rssname = req.body.name;
-  const geloescht = await RSS.findOneAndDelete({ name: rssname });
-  res.status(200).json({ message: `${rssname} wurde gelöscht` });
-}
+export const deleterss = asyncHandler(async (req, res) => {
+    const rssname = req.body.name;
+    await RSS.findOneAndDelete({ name: rssname });
+    res.status(200).json({ message: `${rssname} wurde gelöscht` });
+});

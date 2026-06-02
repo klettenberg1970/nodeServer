@@ -1,30 +1,39 @@
 import express from 'express';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import helmet from 'helmet';
+import compression from 'compression';
 import { fileURLToPath } from 'url';
 
 dotenv.config();
 
 import connectDB from './src/config/db.js';
-
-import { indexRouter } from './src/routes/indexRouter.js';
+import errorMiddleware from './src/middleware/errorMiddleware.js';
+import dateiLogger from './src/middleware/dateilogger.js';
+import corsOptions from './src/middleware/corsConfig.js';
+import indexRouter  from './src/routes/indexRouter.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 
-
-// Datenbankverbindung
 connectDB();
 
-app.use(cors());
+app.use(dateiLogger);
+
+app.use(helmet({
+    contentSecurityPolicy: false
+}));
+
+app.use(compression());
+app.use(corsOptions);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
