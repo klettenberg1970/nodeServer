@@ -25,7 +25,7 @@
 
   <script>
     async function laden() {
-      const res = await fetch('/api/v1/rss/all');
+      const res = await fetch('/api/v1/kontakte');
       const data = await res.json();
       console.log(data)
       document.getElementById('ausgabe').textContent = data;
