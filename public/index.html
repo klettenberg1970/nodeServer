@@ -25,7 +25,7 @@
 
   <script>
     async function laden() {
-      const res = await fetch('/api/v1/kontakte');
+      const res = await fetch('/api/v1/fotos/ordner');
       const data = await res.json();
       console.log(data)
       document.getElementById('ausgabe').textContent = data;
