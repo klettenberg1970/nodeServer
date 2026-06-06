@@ -6,6 +6,8 @@ import linksRouter from './linksRouter.js';
 import kontakteRouter from './kontakteRouter.js';
 import obsidianRouter from './obsidianRouter.js';
 import fotoRouter from './fotoRouter.js';
+import kursRouter from './kursRouter.js';
+import portfolioRouter from './portfolioRouter.js';
 
 const router = Router();
 
@@ -15,6 +17,8 @@ router.use('/api/v1/links', linksRouter);
 router.use('/api/v1/kontakte', kontakteRouter);
 router.use('/api/v1/obsidian', obsidianRouter);
 router.use('/api/v1/fotos', fotoRouter);
+router.use('/api/v1/kurse', kursRouter);
+router.use('/api/v1/portfolio', portfolioRouter);
 
 
 export default router;
