@@ -22,9 +22,21 @@ body {
     border-radius: 5px;
 }
 
-form{
+#formular{
     margin:1rem;
  display: flex;
     flex-direction: column;
 
+}
+
+#formular label{
+    text-align:center;
+    padding:1rem;
+    font-size:1.5rem;
+}
+
+
+#formular textarea{
+
+    padding:1rem;
 }

@@ -1,7 +1,7 @@
-
 import cors from 'cors';
 
 const allowedOrigins = [
+    'http://localhost:3000',     // ← DAS fehlt!
     'http://localhost:5173',
     'http://localhost:5500',
     'http://127.0.0.1:5500',
@@ -9,7 +9,8 @@ const allowedOrigins = [
     'http://127.0.0.1:8000',
     'http://192.168.178.93:8000',
     /\.onrender\.com$/,
-    /\.github\.io$/  // ← Das reicht für ALLE GitHub Pages
+    /\.github\.io$/,
+    /\.localhost:\d+$/          // Optional: Erlaubt alle localhost Ports
 ];
 const corsOptions = {
     origin: (origin, callback) => {
@@ -20,12 +21,13 @@ const corsOptions = {
         )) {
             callback(null, true);
         } else {
+            console.log(`CORS blocked: ${origin}`); // Für Debugging
             callback(new Error('Nicht erlaubt durch CORS-Konfiguration'));
         }
     },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true // Wichtig, falls du später Cookies oder Sessions nutzt
+    credentials: true
 };
 
 export default cors(corsOptions);

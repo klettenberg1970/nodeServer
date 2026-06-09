@@ -11,28 +11,37 @@ export const dateiLesen = async (fileId) => {  // Parameter umbenannt für Klarh
 };
 
 
-export const dateiSchreiben = async (fileId, text) => {
+export const dateiSchreiben = async (fileId, neuerText) => {
+    // 1. Dokument abrufen, um die Länge zu kennen
     const doc = await docs.documents.get({ documentId: fileId });
-    const endIndex = doc.data.body.content[doc.data.body.content.length - 1].endIndex;
     
+    // 2. Die letzte Position im Dokument finden
+    const content = doc.data.body.content;
+    const letztePosition = content[content.length - 1].endIndex;
+    
+    // 3. EINEN Batch-Request mit zwei Aktionen:
+    const requests = [
+        // Aktion 1: Alten Text löschen (von Position 1 bis vor das letzte Zeichen)
+        {
+            deleteContentRange: {
+                range: {
+                    startIndex: 1,
+                    endIndex: letztePosition - 1  // Das letzte Zeichen behalten
+                }
+            }
+        },
+        // Aktion 2: Neuen Text einfügen (an Position 1)
+        {
+            insertText: {
+                location: { index: 1 },
+                text: neuerText
+            }
+        }
+    ];
+    
+    // 4. Beides zusammen ausführen
     await docs.documents.batchUpdate({
         documentId: fileId,
-        requestBody: {
-            requests: [{
-                insertText: { 
-                    location: { index: endIndex - 1 }, 
-                    text: `\n${text}` 
-                }
-            }]
-        }
+        requestBody: { requests }
     });
 };
-
-// const main = async () => {
-//     const text = '2. Ich muss meine Wohnung renovieren'
-//     const eingabe = await dateiSchreiben(toDoId, text)
-//     const inhalt = await dateiLesen(toDoId);  // ID übergeben
-//     console.log(inhalt);
-// };
-
-// main();

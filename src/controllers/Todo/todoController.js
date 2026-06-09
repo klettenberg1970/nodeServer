@@ -9,8 +9,8 @@ export const getTodoDatei = asyncHandler(async (req,res) =>{
      res.json({ inhalt });
 })
 
-// export const changeTodoDatei = asyncHandler(async (req,res) =>{
-//      const inhalt = await dateiLesen(toDoId);
-//      res.json({ inhalt });
-
-// })
+export const changeTodoDatei = asyncHandler(async (req,res) =>{
+     const text = req.body.text;
+    dateiSchreiben(toDoId,text)
+     res.json({ message:'hat geklappt' });
+})
