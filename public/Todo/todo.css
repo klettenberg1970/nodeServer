@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #006FDB;
+}
+
+body {
+
+    background-color: #f4f4f4;
+    color: var(--primary-color);
+   
+}
+
+.ausgabe-container {
+    margin: 1rem;
+    background-color: white;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+form{
+    margin:1rem;
+ display: flex;
+    flex-direction: column;
+
+}

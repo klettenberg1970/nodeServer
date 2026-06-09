@@ -20,16 +20,19 @@ const app = express();
 
 connectDB();
 
-app.use(dateiLogger);
+app.use( dateiLogger) 
 
 app.use(helmet({
     contentSecurityPolicy: false
 }));
 
 app.use(compression());
-app.use(corsOptions);
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(corsOptions);
+
+
 
 app.use('/', indexRouter);
 

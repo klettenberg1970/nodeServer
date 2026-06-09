@@ -3,33 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body{
-      background-color: aquamarine;
-    }
-    button{
-      background-color: black;
-      color:white;
-      border:none;
-      border-radius:8px;
-      padding: 1rem 2rem;
-    }
-  </style>
+ 
   <title>Document</title>
 </head>
 <body>
 
-  <button onclick="laden()">Daten laden</button>
-  <p id="ausgabe"></p>
+   <a href="Todo/todo.html"> Todo</a>
 
 
   <script>
-    async function laden() {
-      const res = await fetch('http://localhost:3000/api/v1/wikipedia');
-      const data = await res.json();
-      console.log(data)
-      document.getElementById('ausgabe').textContent = data;
-    }
+   
   </script>
 </body>
 </html>
