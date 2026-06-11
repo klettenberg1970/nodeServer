@@ -1,34 +1,23 @@
 import { drive } from '../../utils/GoogleDrive/googleDrive.js';
 
-const obsidianOrdnerId = '1yDIjIArVucBW_f_MRiVu3C1aEUq71_Sr';
-const projekteOrdnerId = '1AT5HewKbCqkGsjf4qPERN8kh4jTgjPZt';
-const startDateiId ='1mntDdSTlnfK9nOnl6VJreiKIv6ANvHOt';
-const linksId = '1Hy7BlW81IaEi1baXFn5KqhZIkGM12FX6'
-
-
-
-
 export const startDatei = async () => {
   const res = await drive.files.get(
-    { fileId: startDateiId, alt: 'media' },
+    { fileId: process.env.START_DATEI_ID, alt: 'media' },
     { responseType: 'text' }
   );
-
   return res.data;
 }
 
-
 export const projekteOrdner = async () => {
   const res = await drive.files.list({
-    q: `'${projekteOrdnerId}' in parents and mimeType = 'application/vnd.google-apps.folder'`,
+    q: `'${process.env.PROJEKTE_ORDNER_ID}' in parents and mimeType = 'application/vnd.google-apps.folder'`,
     fields: 'files(id, name)',
   });
   return res.data.files;
 };
 
 export const dateien = async (id) => {
-
-  const res  = await drive.files.list({
+  const res = await drive.files.list({
       q: `'${id}' in parents`,
       fields: 'files(id, name, mimeType)',
     });
@@ -40,7 +29,6 @@ export const getDateiByID = async (id) => {
     { fileId: id, alt: 'media' },
     { responseType: 'text' }
   );
-
   return res.data;
 }
 
@@ -57,6 +45,5 @@ export const getDateiByName = async (name) => {
     { fileId: datei.id, alt: 'media' },
     { responseType: 'text' }
   );
-
   return res.data;
 }

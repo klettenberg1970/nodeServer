@@ -1,11 +1,19 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
+
+dotenv.config();  // Lädt .env
+dotenv.config({ 
+    path: path.join(process.cwd(), '.env.google'),
+    override: true  // Überschreibt vorhandene Variablen
+});
+
+
 import helmet from 'helmet';
 import compression from 'compression';
 import { fileURLToPath } from 'url';
 
-dotenv.config();
+
 
 import connectDB from './src/config/db.js';
 import errorMiddleware from './src/middleware/errorMiddleware.js';
