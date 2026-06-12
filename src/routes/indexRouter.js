@@ -10,7 +10,6 @@ import kursRouter from './kursRouter.js';
 import portfolioRouter from './portfolioRouter.js';
 
 import todoRouter from './todoRouter.js';
-import umfragenRouter from './umfragenRouter.js';
 import wikipediaRouter from './wikipediaRouter.js';
 import passwortRouter from './passwortRouter.js';
 import geminiRouter from './geminiRouter.js';
@@ -28,7 +27,6 @@ router.use('/api/v1/portfolio', portfolioRouter);
 
 router.use('/api/v1/todo', todoRouter);
 router.use('/api/v1/wikipedia', wikipediaRouter);
-router.use('/api/v1/umfragen', umfragenRouter);
 router.use('/api/v1/passwort', passwortRouter);
 router.use('/api/v1/gemini', geminiRouter);
 
