@@ -57,7 +57,7 @@ jobs:
       - name: Deploy auf Cloud Run
         run: |
           gcloud run deploy nodeserver \
-            --image docker.io/klettenberg1970/nodeserver:latest \
+            --image index.docker.io/klettenberg1970/nodeserver:latest \
             --region europe-west3 \
             --platform managed \
             --allow-unauthenticated
