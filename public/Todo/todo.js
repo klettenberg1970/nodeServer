@@ -1,7 +1,7 @@
 const input = document.querySelector('#formular');
 
 async function laden() {
-    const res = await fetch('http://localhost:3000/api/v1/todo');
+    const res = await fetch('http://localhost:8080/api/v1/todo');
     const data = await res.json();
     
     // Bereinige den Text vor der Anzeige
@@ -22,7 +22,7 @@ input.addEventListener('submit', async (e) => {
     eingabeText = eingabeText.replace(/[\r\n]+$/, '');
     eingabeText = eingabeText.replace(/[\r\n]{3,}/g, '\n\n');
     
-    const res = await fetch('http://localhost:3000/api/v1/todo/change', {
+    const res = await fetch('http://localhost:8080/api/v1/todo/change', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: eingabeText })
