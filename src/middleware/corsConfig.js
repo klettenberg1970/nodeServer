@@ -1,7 +1,8 @@
 import cors from 'cors';
 
 const allowedOrigins = [
-    'http://localhost:3000',     // ← DAS fehlt!
+    // ... deine anderen Einträge
+    'http://localhost:3000',
     'http://localhost:5173',
     'http://localhost:5500',
     'http://127.0.0.1:5500',
@@ -10,8 +11,10 @@ const allowedOrigins = [
     'http://192.168.178.93:8000',
     /\.onrender\.com$/,
     /\.github\.io$/,
-    /\.localhost:\d+$/          // Optional: Erlaubt alle localhost Ports
+    /\.localhost:\d+$/,
+    /\.run\.app$/ // <--- DAS HIER FEHLT: Erlaubt alle Cloud-Run-Dienste
 ];
+
 const corsOptions = {
     origin: (origin, callback) => {
         // Erlaubt Anfragen ohne Origin (wie Postman oder mobile Apps)
