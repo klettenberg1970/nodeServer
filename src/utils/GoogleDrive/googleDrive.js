@@ -1,20 +1,20 @@
 import { google } from 'googleapis';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const KEYFILEPATH = path.join(__dirname, 'credentials.json');
+// 1. Hole die Credentials aus der Umgebungsvariable
+// Da es ein JSON-String ist, müssen wir ihn parsen
+const credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON 
+  ? JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON) 
+  : null;
 
-// WICHTIG: Beide Scopes müssen vorhanden sein!
 const SCOPES = [
   'https://www.googleapis.com/auth/drive',
   'https://www.googleapis.com/auth/documents'
 ];
 
+// 2. Initialisiere Auth
+// Wenn credentials vorhanden sind, nutzen wir diese, sonst das Standard-Verfahren
 const auth = new google.auth.GoogleAuth({
-  ...(process.env.NODE_ENV === 'production'
-    ? { keyFile: '/etc/secrets/credentials.json' }
-    : { keyFile: KEYFILEPATH }),
+  ...(credentials ? { credentials } : { keyFile: './credentials.json' }),
   scopes: SCOPES,
 });
 
