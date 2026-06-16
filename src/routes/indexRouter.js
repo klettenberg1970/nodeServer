@@ -17,20 +17,20 @@ import geminiRouter from './geminiRouter.js';
 
 const router = Router();
 
-router.use('/api/v1/start', startRouter);
-router.use('/api/v1/rss', rssRouter);
-router.use('/api/v1/links', linksRouter);
-router.use('/api/v1/kontakte', kontakteRouter);
-router.use('/api/v1/obsidian', obsidianRouter);
-router.use('/api/v1/fotos', fotoRouter);
-router.use('/api/v1/kurse', kursRouter);
-router.use('/api/v1/portfolio', portfolioRouter);
+router.use('/api/start', startRouter);
+router.use('/api/rss', rssRouter);
+router.use('/api/links', linksRouter);
+router.use('/api/kontakte', kontakteRouter);
+router.use('/api/obsidian', obsidianRouter);
+router.use('/api/fotos', fotoRouter);
+router.use('/api/kurse', kursRouter);
+router.use('/api/portfolio', portfolioRouter);
 
-router.use('/api/v1/todo', todoRouter);
-router.use('/api/v1/umfragen', umfragenRouter);
-router.use('/api/v1/wikipedia', wikipediaRouter);
-router.use('/api/v1/passwort', passwortRouter);
-router.use('/api/v1/gemini', geminiRouter);
+router.use('/api/todo', todoRouter);
+router.use('/api/umfragen', umfragenRouter);
+router.use('/api/wikipedia', wikipediaRouter);
+router.use('/api/passwort', passwortRouter);
+router.use('/api/gemini', geminiRouter);
 
 
 export default router;
