@@ -4,7 +4,7 @@ import 'dotenv/config';
 export const checkPasswort = (req, res) => {
     const { password } = req.body; // Destructuring ist sauberer
   
-    const correctPassword = process.env.PORTFOLIO_PASSWORD;
+    const correctPassword = process.env.PASSWORD;
  
     if (password === correctPassword) {
        
