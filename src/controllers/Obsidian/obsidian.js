@@ -8,9 +8,9 @@ export const startDatei = async () => {
   return res.data;
 }
 
-export const projekteOrdner = async () => {
+export const obsidianOrdner = async () => {
   const res = await drive.files.list({
-    q: `'${process.env.PROJEKTE_ORDNER_ID}' in parents and mimeType = 'application/vnd.google-apps.folder'`,
+    q: `'${process.env.OBSIDIAN_ORDNER_ID}' in parents and mimeType = 'application/vnd.google-apps.folder'`,
     fields: 'files(id, name)',
   });
   return res.data.files;
@@ -46,4 +46,14 @@ export const getDateiByName = async (name) => {
     { responseType: 'text' }
   );
   return res.data;
+}
+
+
+
+export const getOrdnerbyID = async (id) =>{
+  const res = await drive.files.list({
+    q: `'${id}' in parents and mimeType = 'application/vnd.google-apps.folder'`,
+    fields: 'files(id, name)',
+  });
+  return res.data.files;
 }

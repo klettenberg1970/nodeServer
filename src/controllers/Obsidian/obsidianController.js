@@ -1,13 +1,13 @@
 import asyncHandler from '../../middleware/asyncHandler.js';
-import { startDatei, projekteOrdner, dateien, getDateiByID, getDateiByName } from "./obsidian.js";
+import { startDatei, obsidianOrdner, dateien, getDateiByID, getDateiByName, getOrdnerbyID} from "./obsidian.js";
 
 export const getStartDatei = asyncHandler(async (req, res) => {
   const start = await startDatei();
   res.json({ start: start });
 });
 
-export const getProjekteOrdner = asyncHandler(async (req, res) => {
-  const alleOrdner = await projekteOrdner();
+export const getObsidianOrdner = asyncHandler(async (req, res) => {
+  const alleOrdner = await obsidianOrdner();
   res.json({ alleOrdner: alleOrdner });
 });
 
@@ -28,3 +28,12 @@ export const getDateibyName = asyncHandler(async (req, res) => {
   const datei = await getDateiByName(name);
   res.json({ datei: datei });
 });
+
+
+export const getOrdnerByID = asyncHandler( async (req,res) =>{
+   const id = req.params.id;
+   console.log(id)
+   const ordner = await getOrdnerbyID (id);
+   console.log(ordner)
+   res.json({ ordner: ordner });
+})
