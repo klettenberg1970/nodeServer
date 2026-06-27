@@ -1,15 +1,17 @@
 import asyncHandler from '../../middleware/asyncHandler.js';
 import { startDatei, obsidianOrdner, dateien, getDateiByID, getDateiByName, getOrdnerbyID} from "./obsidian.js";
+import{ kompletteDateien} from "./kompletteDateien.js"
 
 export const getStartDatei = asyncHandler(async (req, res) => {
   const start = await startDatei();
   res.json({ start: start });
 });
 
-export const getObsidianOrdner = asyncHandler(async (req, res) => {
-  const alleOrdner = await obsidianOrdner();
-  res.json({ alleOrdner: alleOrdner });
-});
+export const getKompletteDateien = asyncHandler(async (req,res) =>{
+  const folderId = req.params.id;
+  const result = await kompletteDateien(folderId);
+    res.json(result);
+})
 
 export const getDateien = asyncHandler(async (req, res) => {
   const id = req.params.id;
