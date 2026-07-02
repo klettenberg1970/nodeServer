@@ -1,6 +1,5 @@
 import { drive, docs } from '../../utils/GoogleDrive/googleDrive.js';
 
-const toDoId = '1LotmSZ37UUnLDGcOXpKEGTwoBtJDk0C1wIqB1VayEVc';
 
 export const dateiLesen = async (fileId) => {  // Parameter umbenannt für Klarheit
     const res = await drive.files.export({ 

@@ -9,7 +9,7 @@ import fotoRouter from './fotoRouter.js';
 import kursRouter from './kursRouter.js';
 import portfolioRouter from './portfolioRouter.js';
 
-import todoRouter from './todoRouter.js';
+import googleDocRouter from './googleDocRouter.js';
 import wikipediaRouter from './wikipediaRouter.js';
 import passwortRouter from './passwortRouter.js';
 import umfragenRouter from './umfragenRouter.js';
@@ -26,7 +26,7 @@ router.use('/api/fotos', fotoRouter);
 router.use('/api/kurse', kursRouter);
 router.use('/api/portfolio', portfolioRouter);
 
-router.use('/api/todo', todoRouter);
+router.use('/api/googledoc', googleDocRouter);
 router.use('/api/umfragen', umfragenRouter);
 router.use('/api/wikipedia', wikipediaRouter);
 router.use('/api/passwort', passwortRouter);

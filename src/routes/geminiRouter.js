@@ -1,7 +1,7 @@
 
 import express from 'express';
 
-import {getGemini} from '../utils/Gemini/geminiController.js'
+import {getGemini} from '../controllers/Gemini/geminiController.js'
 
 const router = express.Router();
 

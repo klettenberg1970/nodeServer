@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+
   <title>Document</title>
 </head>
+
 <body>
 
-   <h1>  Das ist die Seite vom Nodeserver !</h1>
+  <h1> Das ist die Seite vom Nodeserver !</h1>
 
 
-  <script>
-   
+<script>
+    const API = 'http://localhost:8080'
+    const prompt = "Liste mir für jedes Jahr von 2000 bis 2026 den deutschen Fußballmeister auf. "
+    
+    const message = async () => {
+      const response = await fetch(`${API}/api/gemini/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt })
+      });
+
+      const data = await response.json();
+
+      // Ausgabe der KI-Antwort
+      console.log("KI Antwort:", data.result);
+
+      // Ausgabe der Metadaten-Eigenschaften
+      console.log("Verwendetes Modell:", data.metadata.model);
+      console.log("Token-Statistik:");
+      console.log("- Prompt Tokens:", data.metadata.tokens.promptTokenCount);
+      console.log("- Antwort Tokens:", data.metadata.tokens.candidatesTokenCount);
+      console.log("- Gesamt Tokens:", data.metadata.tokens.totalTokenCount);
+    }
+
+    message();
   </script>
+
+
 </body>
+
 </html>
