@@ -47,6 +47,8 @@ app.use('/', indexRouter);
 // Error-Middleware als letztes
 app.use(errorMiddleware);
 
+// Server-Start 
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server läuft auf Port ${PORT}`);
