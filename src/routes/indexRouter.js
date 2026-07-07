@@ -8,7 +8,6 @@ import obsidianRouter from './obsidianRouter.js';
 import fotoRouter from './fotoRouter.js';
 import kursRouter from './kursRouter.js';
 import portfolioRouter from './portfolioRouter.js';
-
 import googleDocRouter from './googleDocRouter.js';
 import wikipediaRouter from './wikipediaRouter.js';
 import passwortRouter from './passwortRouter.js';
@@ -25,7 +24,6 @@ router.use('/api/obsidian', obsidianRouter);
 router.use('/api/fotos', fotoRouter);
 router.use('/api/kurse', kursRouter);
 router.use('/api/portfolio', portfolioRouter);
-
 router.use('/api/googledoc', googleDocRouter);
 router.use('/api/umfragen', umfragenRouter);
 router.use('/api/wikipedia', wikipediaRouter);

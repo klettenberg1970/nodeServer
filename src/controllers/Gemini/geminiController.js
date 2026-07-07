@@ -1,6 +1,7 @@
 import { getMessage } from './gemini.js';
+import asyncHandler from '../../middleware/asyncHandler.js';
 
-export const getGemini = async (req, res) => {
+export const getGemini =asyncHandler( async (req, res) => {
     const { prompt } = req.body;
     console.log(prompt)
     
@@ -14,4 +15,4 @@ console.log("Details der API-Antwort:", data);
             model: data.model
         }
     });
-};
+})

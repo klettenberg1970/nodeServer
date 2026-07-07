@@ -43,3 +43,4 @@ coverage/
 **/skripts/
 docs/
 **/credentials.json     
+public/
