@@ -32,7 +32,7 @@ export const getfeeds = asyncHandler(async (req, res) => {
 export const createFeeds = asyncHandler(async (req, res) => {
     const { kategorie, name, url } = req.body;
     await RSS.create({ kategorie, name, url });
-    console.log(`Name: ${name} wurde erstellt`);
+    
     res.status(201).json({ success: true });
 });
 

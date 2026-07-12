@@ -13,6 +13,7 @@ import wikipediaRouter from './wikipediaRouter.js';
 import passwortRouter from './passwortRouter.js';
 import umfragenRouter from './umfragenRouter.js';
 import geminiRouter from './geminiRouter.js';
+import quizRouter from './quizRouter.js';
 
 const router = Router();
 
@@ -29,6 +30,7 @@ router.use('/api/umfragen', umfragenRouter);
 router.use('/api/wikipedia', wikipediaRouter);
 router.use('/api/passwort', passwortRouter);
 router.use('/api/gemini', geminiRouter);
+router.use('/api/quiz', quizRouter);
 
 
 export default router;
