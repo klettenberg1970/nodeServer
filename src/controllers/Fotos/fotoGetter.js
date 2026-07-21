@@ -4,7 +4,7 @@ import { drive } from '../../utils/GoogleDrive/googleDrive.js'
 export const getFotosVonOrdner = async (ordnerId) => {
     const response = await drive.files.list({
         q: `'${ordnerId}' in parents and mimeType contains 'image/'`,
-        pageSize: 100,
+        pageSize: 500,
         fields: 'files(id, name)',
     });
 
