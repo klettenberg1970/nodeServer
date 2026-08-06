@@ -8,6 +8,13 @@ export const getLinks = asyncHandler(async (req, res) => {
     res.json(links);
 });
 
+export const getLinksUnsortiert = asyncHandler(async (req, res) => {
+    const links = await Link.find();
+    
+    res.json({links});
+});
+
+
 export const createLink = asyncHandler(async (req, res) => {
     const { category, name, url } = req.body;
     const link = await Link.create({ category, name, url });

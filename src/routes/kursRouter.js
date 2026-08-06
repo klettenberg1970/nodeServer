@@ -9,4 +9,5 @@ router.post('/add', createAsset);
 router.post('/delete', deleteAsset);
 router.post('/charts', getCharts);
 
+router.get('/getalledaten', getAssets)
 export default router;

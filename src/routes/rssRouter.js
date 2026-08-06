@@ -6,13 +6,12 @@ const router = express.Router();
 
 router.get('/namen', getnamen);
 router.get('/all',  getAllFeeds);
-
-
-
 router.post('/ausgeben', getfeeds);
 router.post('/add', createFeeds);
-
 router.delete('/delete',deleterss)
+
+
+router.get('/getalledaten', getAllFeeds)
 
 
 export default router;
