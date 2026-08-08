@@ -11,13 +11,13 @@ export const getnamen = asyncHandler(async (req, res) => {
 
 export const getAllFeeds = asyncHandler(async (req, res) => {
     const feeds = await RSS.find();
-   
+
     res.json({ feeds });
 });
 
 export const getfeeds = asyncHandler(async (req, res) => {
     const name = req.body.name;
-      
+
     const feeds = await RSS.find();
     const feedObj = feeds.find(feed => feed.name === name);
 
@@ -31,13 +31,15 @@ export const getfeeds = asyncHandler(async (req, res) => {
 
 export const createFeeds = asyncHandler(async (req, res) => {
     const { kategorie, name, url } = req.body;
+  
     await RSS.create({ kategorie, name, url });
-    
+
     res.status(201).json({ success: true });
 });
 
 export const deleterss = asyncHandler(async (req, res) => {
-    const rssname = req.body.name;
-    await RSS.findOneAndDelete({ name: rssname });
-    res.status(200).json({ message: `${rssname} wurde gelöscht` });
+
+    const id = req.params.id;
+    await RSS.findOneAndDelete({ _id: id });
+    res.json('Erfolg');
 });

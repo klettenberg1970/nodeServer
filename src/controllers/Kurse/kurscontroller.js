@@ -82,65 +82,19 @@ export const getkurse = asyncHandler(async (req, res) => {
     });
 })
 
-// Asset erstellen
 export const createAsset = asyncHandler(async (req, res) => {
     const { kategorie, name, code } = req.body;
+    
+    await Assets.create({ kategorie, name, code });
 
-    if (!kategorie || !name || !code) {
-        return res.status(400).json({
-            error: 'Kategorie, Name und Code sind erforderlich'
-        });
-    }
-
-    const existiert = await Assets.findOne({ name });
-    if (existiert) {
-        return res.status(409).json({
-            error: `Asset "${name}" existiert bereits`
-        });
-    }
-
-    // Prüfen ob der Code gültig ist
-    await yf.getPreis(code);
-
-    const asset = await Assets.create({ kategorie, name, code });
-
-    res.status(201).json({
-        message: 'Asset erfolgreich erstellt',
-        asset: {
-            id: asset._id,
-            kategorie: asset.kategorie,
-            name: asset.name,
-            code: asset.code
-        }
-    });
-})
+    res.status(201).json({ success: true });
+});
 
 // Asset löschen
 export const deleteAsset = asyncHandler(async (req, res) => {
-    const { assetName } = req.body;
-
-    if (!assetName) {
-        return res.status(400).json({
-            error: 'assetName ist erforderlich'
-        });
-    }
-
-    const geloescht = await Assets.findOneAndDelete({ name: assetName });
-
-    if (!geloescht) {
-        return res.status(404).json({
-            error: `Asset "${assetName}" nicht gefunden`
-        });
-    }
-
-    res.status(200).json({
-        message: 'Asset erfolgreich gelöscht',
-        asset: {
-            name: geloescht.name,
-            code: geloescht.code,
-            kategorie: geloescht.kategorie
-        }
-    });
+  const id = req.params.id;
+        await Assets.findOneAndDelete({ _id: id });
+        res.json('Erfolg');
 })
 
 // Cache leeren Endpoint

@@ -4,10 +4,8 @@ import { createAsset, getkurse, deleteAsset, getCharts, getAssets } from '../con
 const router = express.Router();
 
 router.get('/', getkurse);
-router.get('/assets', getAssets);
-router.post('/add', createAsset);
-router.post('/delete', deleteAsset);
 router.post('/charts', getCharts);
-
+router.post('/create', createAsset);
+router.delete('/delete/:id', deleteAsset);
 router.get('/getalledaten', getAssets)
 export default router;

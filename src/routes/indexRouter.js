@@ -19,11 +19,11 @@ const router = Router();
 
 router.use('/api/start', startRouter);
 
-router.use('/api/rss', rssRouter);
+
 router.use('/api/v1/rss', rssRouter);
 
 
-router.use('/api/links', linksRouter);
+
 router.use('/api/v1/links', linksRouter);
 
 
@@ -31,7 +31,7 @@ router.use('/api/kontakte', kontakteRouter);
 router.use('/api/obsidian', obsidianRouter);
 router.use('/api/fotos', fotoRouter);
 
-router.use('/api/kurse', kursRouter);
+
 router.use('/api/v1/kurse', kursRouter);
 
 

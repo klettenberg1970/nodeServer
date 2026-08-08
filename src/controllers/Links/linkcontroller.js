@@ -10,8 +10,8 @@ export const getLinks = asyncHandler(async (req, res) => {
 
 export const getLinksUnsortiert = asyncHandler(async (req, res) => {
     const links = await Link.find();
-    
-    res.json({links});
+
+    res.json({ links });
 });
 
 
@@ -22,17 +22,18 @@ export const createLink = asyncHandler(async (req, res) => {
 });
 
 export const deleteLink = asyncHandler(async (req, res) => {
-    const { category, name, url } = req.body;
 
-    const geloeschterLink = await Link.findOneAndDelete({ category, name, url });
-
-    if (!geloeschterLink) {
-        return res.status(404).json({ message: "Link nicht gefunden" });
-    }
-
-    res.status(200).json({
-        success: true,
-        message: "Link erfolgreich gelöscht",
-        geloeschterLink
-    });
+    const id = req.params.id;
+    await Link.findOneAndDelete({ _id: id });
+    res.json('Erfolg');
 });
+
+export const deleteLinkOld = asyncHandler(async (req, res) => {
+    const { name, url, category } = req.body;
+   
+    // Suche nach den Feldern aus dem Request-Body
+    await Link.findOneAndDelete({  name, url, category});
+    
+    res.json('Erfolg');
+});
+
