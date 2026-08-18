@@ -11,6 +11,7 @@ import portfolioRouter from './portfolioRouter.js';
 import googleDocRouter from './googleDocRouter.js';
 import wikipediaRouter from './wikipediaRouter.js';
 import passwortRouter from './passwortRouter.js';
+import passwoerterRouter from './passwoerterRouter.js'
 import umfragenRouter from './umfragenRouter.js';
 import geminiRouter from './geminiRouter.js';
 import quizRouter from './quizRouter.js';
@@ -40,6 +41,8 @@ router.use('/api/googledoc', googleDocRouter);
 router.use('/api/umfragen', umfragenRouter);
 router.use('/api/wikipedia', wikipediaRouter);
 router.use('/api/passwort', passwortRouter);
+router.use('/api/v1/passwoerter', passwoerterRouter);
+
 router.use('/api/gemini', geminiRouter);
 router.use('/api/quiz', quizRouter);
 
