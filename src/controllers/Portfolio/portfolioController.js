@@ -103,3 +103,18 @@ export const createPortfolio = asyncHandler(async (req, res) => {
         anzahlPositionen: positions.length
     });
 });
+
+
+export const updateCash = asyncHandler(async (req, res) => {
+    const { cashAmount } = req.body;
+    const key = process.env.PORTFOLIO_KEY;
+
+    const portfolioDoc = await Portfolio.findOne().sort({ createdAt: -1 });
+    portfolioDoc.cash = update(cashAmount.toString(), key);
+    await portfolioDoc.save();
+
+    res.json({ 
+        message: 'Cash-Betrag aktualisiert',
+        cash: cashAmount
+    });
+});

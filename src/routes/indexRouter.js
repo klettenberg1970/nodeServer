@@ -36,7 +36,7 @@ router.use('/api/fotos', fotoRouter);
 router.use('/api/v1/kurse', kursRouter);
 
 
-router.use('/api/portfolio', portfolioRouter);
+router.use('/api/v1/portfolio', portfolioRouter);
 router.use('/api/googledoc', googleDocRouter);
 router.use('/api/umfragen', umfragenRouter);
 router.use('/api/wikipedia', wikipediaRouter);
