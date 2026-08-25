@@ -1,6 +1,7 @@
 import RSS from '../../models/rssModel.js';
 import Parser from 'rss-parser';
 import asyncHandler from '../../middleware/asyncHandler.js';
+import { createNewObject} from './rssSort.js'
 
 const parser = new Parser();
 
@@ -10,7 +11,8 @@ export const getnamen = asyncHandler(async (req, res) => {
 });
 
 export const getAllFeeds = asyncHandler(async (req, res) => {
-    const feeds = await RSS.find();
+    const daten = await RSS.find();
+    const feeds =  createNewObject(daten)
 
     res.json({ feeds });
 });
