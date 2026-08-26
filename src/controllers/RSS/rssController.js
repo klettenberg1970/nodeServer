@@ -11,11 +11,19 @@ export const getnamen = asyncHandler(async (req, res) => {
 });
 
 export const getAllFeeds = asyncHandler(async (req, res) => {
+    const feeds = await RSS.find();
+    
+
+    res.json({ feeds });
+});
+
+export const getAllSortedFeeds = asyncHandler(async (req, res) => {
     const daten = await RSS.find();
     const feeds =  createNewObject(daten)
 
     res.json({ feeds });
 });
+
 
 export const getfeeds = asyncHandler(async (req, res) => {
     const name = req.body.name;
