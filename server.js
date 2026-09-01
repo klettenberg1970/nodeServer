@@ -8,12 +8,8 @@ dotenv.config({
     override: true  // Überschreibt vorhandene Variablen
 });
 
-
 import helmet from 'helmet';
 import compression from 'compression';
-import { fileURLToPath } from 'url';
-
-
 
 import connectDB from './src/config/db.js';
 import errorMiddleware from './src/middleware/errorMiddleware.js';
@@ -21,25 +17,19 @@ import dateiLogger from './src/middleware/dateilogger.js';
 import corsOptions from './src/middleware/corsConfig.js';
 import indexRouter from './src/routes/indexRouter.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const app = express();
 
 connectDB();
-
 
 app.use(corsOptions);
 
 // Middleware
 
 app.use(dateiLogger);
-app.use(helmet({
-    contentSecurityPolicy: false
-}));
+app.use(helmet());
 app.use(compression());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Routen
 app.use('/', indexRouter);
