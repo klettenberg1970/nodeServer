@@ -29,6 +29,7 @@ router.use('/api/v1/links', linksRouter);
 
 
 router.use('/api/kontakte', kontakteRouter);
+router.use('/api/v1/obsidian', obsidianRouter);
 router.use('/api/obsidian', obsidianRouter);
 router.use('/api/fotos', fotoRouter);
 

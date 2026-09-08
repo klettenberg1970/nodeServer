@@ -1,12 +1,9 @@
 import asyncHandler from '../../middleware/asyncHandler.js';
-import { startDatei, obsidianOrdner, dateien, getDateiByID, getDateiByName, getOrdnerbyID} from "./getObsidian.js";
+import { getOrdnerbyName, dateien, getDateiByID, getDateiByName, getOrdnerbyID} from "./getObsidian.js";
 import {aktualisiereDatei} from './editObsidian.js'
 import{ kompletteDateien} from "./kompletteDateien.js"
 
-export const getStartDatei = asyncHandler(async (req, res) => {
-  const start = await startDatei();
-  res.json({ start: start });
-});
+
 
 export const getKompletteDateien = asyncHandler(async (req,res) =>{
   const folderId = req.params.id;
@@ -35,11 +32,20 @@ export const getDateibyName = asyncHandler(async (req, res) => {
 
 export const getOrdnerByID = asyncHandler( async (req,res) =>{
    const id = req.params.id;
-   console.log(id)
+   
    const ordner = await getOrdnerbyID (id);
-   console.log(ordner)
+   
    res.json({ ordner: ordner });
 })
+
+export const getOrdnerByName = asyncHandler( async (req,res) =>{
+   const name = req.params.name;
+  
+   const ordner = await getOrdnerbyName (name);
+   
+   res.json({ ordner: ordner });
+})
+
 
 
 export const dateiAktualisierung =  asyncHandler( async (req,res) =>{

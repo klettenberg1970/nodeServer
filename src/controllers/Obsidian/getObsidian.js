@@ -1,12 +1,6 @@
 import { drive } from '../../utils/GoogleDrive/googleDrive.js';
 
-export const startDatei = async () => {
-  const res = await drive.files.get(
-    { fileId: process.env.START_DATEI_ID, alt: 'media' },
-    { responseType: 'text' }
-  );
-  return res.data;
-}
+
 
 export const obsidianOrdner = async () => {
   const res = await drive.files.list({
@@ -15,6 +9,8 @@ export const obsidianOrdner = async () => {
   });
   return res.data.files;
 };
+
+
 
 export const dateien = async (id) => {
   const res = await drive.files.list({
@@ -56,4 +52,12 @@ export const getOrdnerbyID = async (id) =>{
     fields: 'files(id, name)',
   });
   return res.data.files;
+}
+
+export const getOrdnerbyName = async(name) => {
+  const res = await drive.files.list({
+    q: `name = '${name}' and mimeType = 'application/vnd.google-apps.folder'`,
+    fields: 'files(id, name)',
+  });
+  return res.data.files[0]; // Gibt den Ordner zurück
 }
