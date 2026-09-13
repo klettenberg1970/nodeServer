@@ -42,7 +42,9 @@ coverage/
 # ==================== PROJECT SPECIFIC ====================
 **/skripts/
 docs/
-**/credentials.json     
-public/
+**/credentials.json 
+**/clientSecret.json 
+**/get-refresh-token.js
+
 
 

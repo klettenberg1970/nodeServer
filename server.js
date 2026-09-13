@@ -1,12 +1,6 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import path from 'path';
+import './env.js';
 
-dotenv.config();  // Lädt .env
-dotenv.config({ 
-    path: path.join(process.cwd(), '.env.google'),
-    override: true  // Überschreibt vorhandene Variablen
-});
+import express from 'express';
 
 import helmet from 'helmet';
 import compression from 'compression';

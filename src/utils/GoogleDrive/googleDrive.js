@@ -1,20 +1,18 @@
-import { google } from 'googleapis';
-import { readFileSync } from 'fs';
 
-// 1. Hole die Credentials aus der Umgebungsvariable
-const credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON 
-  ? JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON) 
-  : (() => { try { return JSON.parse(readFileSync('./src/utils/GoogleDrive/credentials.json', 'utf8')); } catch(e) { return null; } })();
+import { google } from 'googleapis';
 
 const SCOPES = [
   'https://www.googleapis.com/auth/drive',
   'https://www.googleapis.com/auth/documents'
 ];
 
-// 2. Initialisiere Auth
-const auth = new google.auth.GoogleAuth({
-  ...(credentials ? { credentials } : { keyFile: './credentials.json' }),
-  scopes: SCOPES,
+const auth = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET
+);
+
+auth.setCredentials({
+  refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
 });
 
 export const drive = google.drive({ version: 'v3', auth });

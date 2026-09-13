@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getKompletteDateien ,getDateien,getDateibyId, getDateibyName,getOrdnerByID,getOrdnerByName, dateiAktualisierung } from '../controllers/Obsidian/obsidianController.js';
+import { getKompletteDateien ,getDateien,getDateibyId, getDateibyName,getOrdnerByID,getOrdnerByName, dateiAktualisierung, createNeueDatei  } from '../controllers/Obsidian/obsidianController.js';
 import { getOrdnerbyName } from '../controllers/Obsidian/getObsidian.js';
 
 const router = express.Router();
@@ -14,6 +14,7 @@ router.get('/dateien/:id', getDateien)
 router.get('/datei/:id', getDateibyId)  
 router.get('/dateiname/:name', getDateibyName)
 
-router.put ('/update', dateiAktualisierung)
+router.put ('/update', dateiAktualisierung);
 
+router.post('/create', createNeueDatei);
 export default router;
