@@ -11,14 +11,13 @@ export const obsidianOrdner = async () => {
 };
 
 
-
-export const dateien = async (id) => {
+ export const dateien = async (id) => {
   const res = await drive.files.list({
-    q: `'${id}' in parents and name contains '.md'`,
-    fields: 'files(id, name, mimeType)',
-  });
-  return res.data.files;
-};
+      q: `'${id}' in parents`,
+      fields: 'files(id, name, mimeType)',
+    });
+    return res.data.files;
+}
 
 export const getDateiByID = async (id) => {
   const res = await drive.files.get(
