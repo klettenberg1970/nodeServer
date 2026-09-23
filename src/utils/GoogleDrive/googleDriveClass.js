@@ -2,7 +2,7 @@
 const LOCAL_API = 'http://localhost:8080';
 const CLOUD_API = 'https://nodeserver-995188789852.europe-west3.run.app';
 
-export class Obsidian {
+export class GoogleDrive {
   constructor() {
     // Testet einmalig beim Erstellen, ob der lokale Server erreichbar ist,
     // und merkt sich das Ergebnis für alle weiteren Aufrufe.

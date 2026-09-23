@@ -1,7 +1,7 @@
 
 import Link from '../../models/linksmodel.js';
 import { linkarray } from './linkarray.js';
-import { Obsidian } from '../../utils/obsidianClass.js'; // Pfad bitte prüfen/anpassen
+import { GoogleDrive } from '../../utils/GoogleDrive/googleDriveClass.js'; // Pfad bitte prüfen/anpassen
 
 const linksMdId = '1Hy7BlW81IaEi1baXFn5KqhZIkGM12FX6';
 
@@ -29,7 +29,7 @@ export const syncLinksZuMd = async () => {
         const links = linkarray(linkunsortiert);
         const mdText = jsonZuMarkdown(links);
 
-        const obsidian = new Obsidian();
+        const obsidian = new GoogleDrive();
         await obsidian.updateMdDatei(mdText, linksMdId);
     } catch (error) {
         // Fehler beim Sync soll die eigentliche create/delete-Response nicht zum Absturz bringen

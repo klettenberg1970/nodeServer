@@ -1,13 +1,13 @@
 import express from 'express';
 
-import { getDatei , changeDatei} from '../controllers/GoogleDoc/googleDocController.js';
+import { getDoc , changeDoc} from '../controllers/GoogleDoc/googleDocController.js';
 
 const router = express.Router();
 
 
-router.get('/:id', getDatei); 
+router.get('/:id', getDoc); 
 
-router.put('/change/:id', changeDatei); 
+router.put('/change/:id', changeDoc); 
 
 
 
