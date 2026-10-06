@@ -46,6 +46,7 @@ export class GoogleDrive {
 
   async getMdByID(id) {
     const API = await this.apiPromise;
+
     const res = await fetch(`${API}/api/obsidian/datei/${id}`);
     const daten = await res.json();
     return daten;
@@ -81,5 +82,31 @@ export class GoogleDrive {
     const data = await response.json();
     return data
   }
+
+  async getGoogleDoc(id){
+    const API = await this.apiPromise;
+
+       const res = await fetch(`${API}/api/v1/googledoc/${id}`);
+    const daten = await res.json();
+    return daten;
+  
+  }
+
+    async updateGoogleDoc(id,text){
+    const API = await this.apiPromise;
+
+     const response = await fetch(`${API}/api/v1/googledoc/change/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({id: id , text: text})
+    });
+
+    const data = await response.json();
+    return data
+  }
+
+  
 
 }
