@@ -22,7 +22,7 @@ app.use(corsOptions);
 app.use(dateiLogger);
 app.use(helmet());
 app.use(compression());
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 
 
 // Routen
