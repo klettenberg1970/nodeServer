@@ -57,3 +57,15 @@ export const dateiSchreiben = async (fileId, neuerText) => {
 
   return { success: true };
 };
+
+export const docErstellen = async (name) => {
+  const res = await drive.files.create({
+    requestBody: {
+      name: name,
+      mimeType: 'application/vnd.google-apps.document',
+    },
+    fields: 'id, name, webViewLink',
+  });
+
+  return res.data;
+};

@@ -107,6 +107,21 @@ export class GoogleDrive {
     return data
   }
 
+  async createGoogleDoc(name) {
+  const API = await this.apiPromise;
+
+  const response = await fetch(`${API}/api/v1/googledoc/create`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name: name })
+  });
+
+  const data = await response.json();
+  return data;
+}
+
   
 
 }

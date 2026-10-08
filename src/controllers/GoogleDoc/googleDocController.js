@@ -1,5 +1,5 @@
 import asyncHandler from '../../middleware/asyncHandler.js';
-import {dateiLesen, dateiSchreiben} from './googleDoc.js';
+import {dateiLesen, dateiSchreiben, docErstellen} from './googleDoc.js';
 
 
 export const getDoc = asyncHandler(async (req,res) =>{
@@ -16,3 +16,14 @@ export const changeDoc = asyncHandler(async (req,res) =>{
      await dateiSchreiben(ID, text);
      res.json({ message:'hat geklappt' });
 })
+
+export const createGoogleDoc = asyncHandler(async (req, res) => {
+  const { name } = req.body;
+
+  if (!name) {
+    return res.status(400).json({ success: false, message: 'name fehlt' });
+  }
+
+  const doc = await docErstellen(name);
+  res.status(201).json({ success: true, id: doc.id, name: doc.name, link: doc.webViewLink });
+});
