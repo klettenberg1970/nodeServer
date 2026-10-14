@@ -44,6 +44,14 @@ export class GoogleDrive {
     return daten;
   }
 
+
+async getMdByName (name){
+  const API = await this.apiPromise;
+    const res = await fetch(`${API}/api/obsidian/dateiname/${name}`);
+    const daten = await res.json();
+    return daten;
+}
+
   async getMdByID(id) {
     const API = await this.apiPromise;
 

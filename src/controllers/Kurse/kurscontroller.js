@@ -105,24 +105,24 @@ export const clearCache = asyncHandler(async (req, res) => {
     });
 })
 
-// Einzelnen Kurs abrufen
-export const getEinzelkurs = asyncHandler(async (req, res) => {
-    const { code } = req.params;
+// // Einzelnen Kurs abrufen
+// export const getEinzelkurs = asyncHandler(async (req, res) => {
+//     const { code } = req.params;
 
-    if (!code) {
-        return res.status(400).json({
-            error: 'Code ist erforderlich'
-        });
-    }
+//     if (!code) {
+//         return res.status(400).json({
+//             error: 'Code ist erforderlich'
+//         });
+//     }
 
-    const preis = await yf.getPreis(code);
+//     const preis = await yf.getPreis(code);
 
-    res.status(200).json({
-        code,
-        preis,
-        timestamp: new Date().toISOString()
-    });
-})
+//     res.status(200).json({
+//         code,
+//         preis,
+//         timestamp: new Date().toISOString()
+//     });
+// })
 
 // Cache für Charts-Daten (z. B. 5 Minuten)
 const chartsCache = new Map();
@@ -169,3 +169,51 @@ export const getCharts = asyncHandler(async (req, res) => {
 
     res.status(200).json({ charts });
 });
+
+
+ export const getEinzelkurs = asyncHandler(async (req, res) => {
+        // 1. Eingabe aus Body oder Query flexibel auslesen (unterstützt 'namen' oder 'name')
+        const input = req.body.namen || req.body.name || req.query.namen || req.query.name;
+    
+ 
+        // 2. Zu einem bereinigten Array normalisieren
+        const namenArray = (Array.isArray(input) ? input : [input])
+            .map(n => (typeof n === 'string' ? n.trim() : ''))
+            .filter(Boolean);
+    
+        if (namenArray.length === 0) {
+            return res.status(400).json({ error: 'Keine gültigen Namen übergeben' });
+        }
+    
+        // 3. Passende Datensätze aus MongoDB laden (über $in)
+        const gefundeneAssets = await Assets.find({ 
+            name: { $in: namenArray } 
+        });
+    
+        if (gefundeneAssets.length === 0) {
+            return res.status(404).json({
+                error: 'Keine passenden Assets in der Datenbank gefunden',
+                angefragt: namenArray
+            });
+        }
+    
+        // 4. Kurse über Yahoo Finance parallel abrufen
+        const preisPromises = gefundeneAssets.map(async (asset) => {
+            const preis = await yf.getPreis(asset.code);
+            return {
+                name: asset.name,
+                code: asset.code,
+                kategorie: asset.kategorie,
+                preis: preis !== null ? Number(preis.toFixed(2)) : null
+            };
+        });
+    
+        const ergebnisse = await Promise.all(preisPromises);
+    
+  
+        res.status(200).json({
+            success: true,
+            anzahl: ergebnisse.length,
+            daten: Array.isArray(input) ? ergebnisse : ergebnisse[0]
+        });
+    });
