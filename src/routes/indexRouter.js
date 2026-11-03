@@ -15,6 +15,7 @@ import passwoerterRouter from './passwoerterRouter.js'
 import umfragenRouter from './umfragenRouter.js';
 import geminiRouter from './geminiRouter.js';
 import quizRouter from './quizRouter.js';
+import mcpRouter from '../mcp/mcpRouter.js';
 
 const router = Router();
 
@@ -45,6 +46,8 @@ router.use('/api/v1/passwoerter', passwoerterRouter);
 
 router.use('/api/gemini', geminiRouter);
 router.use('/api/quiz', quizRouter);
+
+router.use('/api/v1/mcp', mcpRouter);
 
 
 export default router;

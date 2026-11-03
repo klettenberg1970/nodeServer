@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { GoogleDrive } from '../../../utils/GoogleDrive/googleDriveClass.js';
+import { GoogleDrive } from '../../utils/GoogleDrive/googleDriveClass.js';
 
 let googleDrive = null;
 const holeGoogleDrive = () => {
