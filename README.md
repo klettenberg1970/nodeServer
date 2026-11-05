@@ -4,6 +4,41 @@ Ein modularer **Node.js- / Express-Backend-Server** (ES-Module) mit MongoDB-Anbi
 
 ---
 
+## 🧩 MCP-Unterstützung
+
+Der Server unterstützt jetzt **MCP (Modular Command Protocol)**‑Tools, die über das Antigravity‑CLI bereitgestellt werden. Mit den folgenden MCP‑Servern und ihren lazily‑geladenen Werkzeugen können Sie Dateien und Ordner im Projekt verwalten, Obsidian‑Markdown‑Dateien lesen und schreiben sowie weitere automatisierte Aktionen ausführen.
+
+### Verfügbare MCP‑Server
+
+- **node-lokal** (Dateisystem‑Operationen)
+  - `liste_Dateien_und_Ordner`
+  - `erstelle_Ordner`
+  - `erstelle_Datei`
+  - `lese_Datei`
+  - `veraendere_Datei`
+  - `loesche`
+- **nodeServer** (Obsidian‑ und MD‑Manipulation)
+  - `listeObsidianDateien`
+  - `leseMdDatei`
+  - `leseMdDateiByName`
+  - `erstelleMd`
+  - `ergaenzeMd`
+  - `updateMd`
+  - `holeLinks`
+  - `erstelleLink`
+
+### Beispielaufruf via Antigravity‑CLI
+
+```bash
+agy mcp call --server node-lokal --tool erstelle_Ordner --args '{"Pfad":"./neuerOrdner"}'
+```
+
+Damit wird im Arbeitsverzeichnis ein neuer Ordner angelegt.
+
+Weitere Informationen finden Sie in den jeweiligen Tool‑Schemas unter `~/.gemini/antigravity-cli/mcp/<server>/`.
+
+---
+
 ## 🚀 Überblick & Funktionen
 
 Der Server stellt REST-Endpunkte für verschiedene Daten- und Drittanbieter-Dienste bereit:
@@ -15,6 +50,41 @@ Der Server stellt REST-Endpunkte für verschiedene Daten- und Drittanbieter-Dien
 - **Notizen & Links (`/api/obsidian`, `/api/v1/links`):** Obsidian-Integration und strukturierte Linksammlungen.
 - **Benutzer & Sicherheit (`/api/passwort`, `/api/v1/passwoerter`):** Passwort-Management und Authentifizierung (`jsonwebtoken`).
 - **Weitere APIs:** Kontakte (`/api/kontakte`), Quiz (`/api/quiz`), Umfragen (`/api/umfragen`), Fotos (`/api/fotos`) und Wikipedia-Abfragen (`/api/wikipedia`).
+
+---
+
+## 🧩 MCP-Unterstützung
+
+Der Server unterstützt jetzt **MCP (Modular Command Protocol)**‑Tools, die über das Antigravity‑CLI bereitgestellt werden. Mit den folgenden MCP‑Servern und ihren lazily‑geladenen Werkzeugen können Sie Dateien und Ordner im Projekt verwalten, Obsidian‑Markdown‑Dateien lesen und schreiben sowie weitere automatisierte Aktionen ausführen.
+
+### Verfügbare MCP‑Server
+
+- **node-lokal** (Dateisystem‑Operationen)
+  - `liste_Dateien_und_Ordner`
+  - `erstelle_Ordner`
+  - `erstelle_Datei`
+  - `lese_Datei`
+  - `veraendere_Datei`
+  - `loesche`
+- **nodeServer** (Obsidian‑ und MD‑Manipulation)
+  - `listeObsidianDateien`
+  - `leseMdDatei`
+  - `leseMdDateiByName`
+  - `erstelleMd`
+  - `ergaenzeMd`
+  - `updateMd`
+  - `holeLinks`
+  - `erstelleLink`
+
+### Beispielaufruf via Antigravity‑CLI
+
+```bash
+agy mcp call --server node-lokal --tool erstelle_Ordner --args '{"Pfad":"./neuerOrdner"}'
+```
+
+Damit wird im Arbeitsverzeichnis ein neuer Ordner angelegt.
+
+Weitere Informationen finden Sie in den jeweiligen Tool‑Schemas unter `~/.gemini/antigravity-cli/mcp/<server>/`.
 
 ---
 
@@ -30,6 +100,41 @@ Der Server stellt REST-Endpunkte für verschiedene Daten- und Drittanbieter-Dien
   - `utils/`: Hilfsklassen (u. a. Yahoo Finance, Google Drive API).
 - **`skripts/`**: Eigenständige Node.js-Hilfsskripte (CLI-Tools für Datenmigration, MongoDB-Wartung, Passwortverwaltung, RSS-, Obsidian- und Quiz-Imports).
 - **`docs/`**: Dokumentationen, Spickzettel (CLI, Docker, Git, APIs) und Anmeldedaten.
+
+---
+
+## 🧩 MCP-Unterstützung
+
+Der Server unterstützt jetzt **MCP (Modular Command Protocol)**‑Tools, die über das Antigravity‑CLI bereitgestellt werden. Mit den folgenden MCP‑Servern und ihren lazily‑geladenen Werkzeugen können Sie Dateien und Ordner im Projekt verwalten, Obsidian‑Markdown‑Dateien lesen und schreiben sowie weitere automatisierte Aktionen ausführen.
+
+### Verfügbare MCP‑Server
+
+- **node-lokal** (Dateisystem‑Operationen)
+  - `liste_Dateien_und_Ordner`
+  - `erstelle_Ordner`
+  - `erstelle_Datei`
+  - `lese_Datei`
+  - `veraendere_Datei`
+  - `loesche`
+- **nodeServer** (Obsidian‑ und MD‑Manipulation)
+  - `listeObsidianDateien`
+  - `leseMdDatei`
+  - `leseMdDateiByName`
+  - `erstelleMd`
+  - `ergaenzeMd`
+  - `updateMd`
+  - `holeLinks`
+  - `erstelleLink`
+
+### Beispielaufruf via Antigravity‑CLI
+
+```bash
+agy mcp call --server node-lokal --tool erstelle_Ordner --args '{"Pfad":"./neuerOrdner"}'
+```
+
+Damit wird im Arbeitsverzeichnis ein neuer Ordner angelegt.
+
+Weitere Informationen finden Sie in den jeweiligen Tool‑Schemas unter `~/.gemini/antigravity-cli/mcp/<server>/`.
 
 ---
 
