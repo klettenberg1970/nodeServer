@@ -1,14 +1,20 @@
 import express from 'express';
-import { getLinks, createLink, deleteLink ,getLinksUnsortiert,deleteLinkOld} from '../controllers/Links/linkcontroller.js';
+import { getLinksSortiert, createLink, deleteLink ,getLinksUnsortiert,deleteLinkOld,deleteLinkByName,renameLinkbyName, moveLinkbyName } from '../controllers/Links/linkcontroller.js';
 
 const router = express.Router();
 
-router.get('/', getLinks);    
-router.post('/create', createLink); 
-router.post('/deleteold', deleteLinkOld); 
+router.get('/', getLinksSortiert); 
+router.get('/getalledaten', getLinksUnsortiert);
 
+router.post('/create', createLink); 
+
+router.post('/deleteold', deleteLinkOld); 
 router.delete('/delete/:id', deleteLink); 
-router.get('/getalledaten', getLinksUnsortiert)
+router.post('/deletebyname', deleteLinkByName); 
+
+router.post('/rename', renameLinkbyName);
+router.post('/move', moveLinkbyName); 
+
 
 export default router;
 
