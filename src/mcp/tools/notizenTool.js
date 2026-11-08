@@ -8,7 +8,7 @@ export const registerNotizenTool = (server) => {
         'Notiz erstellen',
         'erstelle eine neue Notiz',
         {
-            kategorie: z.string().optional(),
+            kategorie: z.string(),
             titel: z.string(),
             tags: z.array(z.string()).optional(),
             beschreibung: z.string().optional(),
