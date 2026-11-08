@@ -15,6 +15,7 @@ import passwoerterRouter from './passwoerterRouter.js'
 import umfragenRouter from './umfragenRouter.js';
 import geminiRouter from './geminiRouter.js';
 import quizRouter from './quizRouter.js';
+import notizenRouter from './notizenRouter.js'
 import mcpRouter from '../mcp/mcpRouter.js';
 
 const router = Router();
@@ -26,6 +27,7 @@ router.use('/api/v1/rss', rssRouter);
 router.use('/api/v1/links', linksRouter);
 
 router.use('/api/kontakte', kontakteRouter);
+router.use('/api/v1/notizen', notizenRouter);
 
 router.use('/api/v1/obsidian', obsidianRouter);
 router.use('/api/obsidian', obsidianRouter);
