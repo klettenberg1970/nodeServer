@@ -8,10 +8,10 @@ export const registerNotizenTool = (server) => {
         'Notiz erstellen',
         'erstelle eine neue Notiz',
         {
-            kategorie: z.string(),
+            kategorie: z.string().describe('Nimm allgemeine Begrifffe wie "Einkaufen","Finanzen" usw.'),
             titel: z.string(),
             tags: z.array(z.string()).optional(),
-            beschreibung: z.string().optional(),
+            beschreibung: z.string().optional().describe('Formuliere das Anliegen (Titel) etwas näher in Stichpunkten aus'),
             link: z.string().optional(),
             prioritaet: z.string().optional(),
             vorschlag: z.string().optional(),
