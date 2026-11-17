@@ -32,16 +32,21 @@ const preisobjekt = async (kursObjekt) => {
 
     if (alleSymbole.length === 0) return {};
 
-    // 2. Einzelabfragen für jedes Symbol
-    const preise = {};
-    for (const symbol of alleSymbole) {
-        try {
-            const preis = await yf.getPreis(symbol);
-            preise[symbol] = preis;
-        } catch (error) {
-            preise[symbol] = null;
-        }
-    }
+    // 2. Parallele Abfragen für alle Symbole
+    const ergebnisse = await Promise.all(
+        alleSymbole.map(async (symbol) => {
+            try {
+                const preis = await yf.getPreis(symbol);
+                return { symbol, preis };
+            } catch (error) {
+                return { symbol, preis: null };
+            }
+        })
+    );
+
+    const preise = Object.fromEntries(
+        ergebnisse.map(({ symbol, preis }) => [symbol, preis])
+    );
 
     // 3. Die ursprüngliche Struktur wieder befüllen
     for (const [kategorie, assets] of Object.entries(kursObjekt)) {
