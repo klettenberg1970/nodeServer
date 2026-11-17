@@ -15,8 +15,9 @@ import passwoerterRouter from './passwoerterRouter.js'
 import umfragenRouter from './umfragenRouter.js';
 import geminiRouter from './geminiRouter.js';
 import quizRouter from './quizRouter.js';
-import notizenRouter from './notizenRouter.js'
+import notizenRouter from './notizenRouter.js';
 import mcpRouter from '../mcp/mcpRouter.js';
+import { verifyToken } from '../middleware/auth.js';
 
 const router = Router();
 
@@ -36,15 +37,15 @@ router.use('/api/fotos', fotoRouter);
 
 router.use('/api/v1/kurse', kursRouter);
 
-router.use('/api/v1/portfolio', portfolioRouter);
+router.use('/api/v1/portfolio', verifyToken, portfolioRouter);
 
 router.use('/api/googledoc', googleDocRouter);
-router.use('/api/v1/googledoc', googleDocRouter);
+router.use('/api/v1/googledoc',  googleDocRouter);
 
 router.use('/api/umfragen', umfragenRouter);
 router.use('/api/wikipedia', wikipediaRouter);
 router.use('/api/passwort', passwortRouter);
-router.use('/api/v1/passwoerter', passwoerterRouter);
+router.use('/api/v1/passwoerter', verifyToken, passwoerterRouter);
 
 router.use('/api/gemini', geminiRouter);
 router.use('/api/quiz', quizRouter);
