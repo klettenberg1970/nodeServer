@@ -1,7 +1,8 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { registerObsidianTools } from './tools/obsidianTools.js';
 import { registerLinksTools } from './tools/linksTool.js';
-import {registerNotizenTool} from'./tools/notizenTool.js'
+import { registerNotizenTool } from './tools/notizenTool.js';
+import { registerRssTools } from './tools/rssTool.js';
 
 export const erstelleMcpServer = () => {
     const server = new McpServer({
@@ -12,7 +13,8 @@ export const erstelleMcpServer = () => {
     // Registriere Tools aus modularen Dateien
     registerObsidianTools(server);
     registerLinksTools(server);
-    registerNotizenTool(server)
+    registerNotizenTool(server);
+    registerRssTools(server);
 
     return server;
 };
