@@ -26,7 +26,7 @@ router.use('/api/start', startRouter);
 router.use('/api/v1/rss', rssRouter);
 router.use('/api/v1/links', linksRouter);
 
-router.use('/api/kontakte', kontakteRouter);
+router.use('/api/v1/kontakte', kontakteRouter);
 router.use('/api/v1/notizen', notizenRouter);
 
 router.use('/api/v1/obsidian', obsidianRouter);
