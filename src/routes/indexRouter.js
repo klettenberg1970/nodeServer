@@ -45,7 +45,8 @@ router.use('/api/v1/googledoc',  googleDocRouter);
 router.use('/api/umfragen', umfragenRouter);
 router.use('/api/wikipedia', wikipediaRouter);
 router.use('/api/passwort', passwortRouter);
-router.use('/api/v1/passwoerter', verifyToken, passwoerterRouter);
+
+// router.use('/api/v1/passwoerter', verifyToken, passwoerterRouter);
 
 router.use('/api/gemini', geminiRouter);
 router.use('/api/quiz', quizRouter);
