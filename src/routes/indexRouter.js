@@ -48,7 +48,7 @@ router.use('/api/passwort', passwortRouter);
 
 // router.use('/api/v1/passwoerter', verifyToken, passwoerterRouter);
 
-router.use('/api/v1/gemini', geminiRouter);
+router.use('/api/v1/gemini', verifyToken,geminiRouter);
 router.use('/api/quiz', quizRouter);
 
 router.use('/api/v1/mcp', mcpRouter);
